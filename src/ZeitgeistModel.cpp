@@ -101,7 +101,7 @@ void ZeitgeistModel::refresh()
                                                    m_eventTemplates,
                                                    m_storageState,
                                                    10000,
-                                                   QtZeitgeist::Log::MostRecentEvents,
+                                                   QtZeitgeist::Log::MostRecentSubjects,
                                                    m_log,
                                                    this);
 
