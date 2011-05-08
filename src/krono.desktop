@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Krono
+Exec=krono %i -caption "%c"
+Icon=chronometer
+Type=Application
+Categories=Qt;KDE;System
+GenericName=History Journal
+Terminal=false
