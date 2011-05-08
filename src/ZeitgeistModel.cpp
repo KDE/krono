@@ -41,6 +41,7 @@ ZeitgeistModel::ZeitgeistModel(QObject *parent)
     m_storageState = QtZeitgeist::Log::Any;
     m_range = QtZeitgeist::DataModel::TimeRange::always();
     m_eventTemplates << QtZeitgeist::DataModel::Event(this);
+    m_type = QtZeitgeist::Log::MostRecentSubjects;
     ThreadWeaver::Weaver::instance()->setMaximumNumberOfThreads(1);
 }
 
@@ -101,7 +102,7 @@ void ZeitgeistModel::refresh()
                                                    m_eventTemplates,
                                                    m_storageState,
                                                    10000,
-                                                   QtZeitgeist::Log::MostRecentSubjects,
+                                                   m_type,
                                                    m_log,
                                                    this);
 
@@ -223,6 +224,17 @@ QStringList ZeitgeistModel::eventIconOverlays(const QtZeitgeist::DataModel::Even
 QtZeitgeist::DataModel::TimeRange ZeitgeistModel::range() const
 {
     return m_range;
+}
+
+void ZeitgeistModel::setResultType(QtZeitgeist::Log::ResultType type)
+{
+    m_type = type;
+    refresh();
+}
+
+QtZeitgeist::Log::ResultType ZeitgeistModel::resultType() const
+{
+    return m_type;
 }
 
 #include "ZeitgeistModel.moc"

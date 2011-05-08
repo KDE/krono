@@ -61,6 +61,9 @@ class ZeitgeistModel : public QAbstractItemModel {
         void setRange(const QtZeitgeist::DataModel::TimeRange &range);
         QtZeitgeist::DataModel::TimeRange range() const;
 
+        void setResultType(QtZeitgeist::Log::ResultType type);
+        QtZeitgeist::Log::ResultType resultType() const;
+
     public slots:
         void refresh();
 
@@ -77,6 +80,7 @@ class ZeitgeistModel : public QAbstractItemModel {
         QtZeitgeist::Log::StorageState m_storageState;
         QDBusPendingReply<QtZeitgeist::DataModel::EventList> m_reply;
         QtZeitgeist::DataModel::EventList m_events;
+        QtZeitgeist::Log::ResultType m_type;
 };
 
 #endif // ZEITGEISTMODEL_H
