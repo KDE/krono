@@ -22,33 +22,33 @@
 
 #include <KDE/ThreadWeaver/Job>
 
-#include <QtZeitgeist/Log>
-#include <QtZeitgeist/DataModel/TimeRange>
-#include <QtZeitgeist/DataModel/Event>
+#include <QZeitgeist/Log>
+#include <QZeitgeist/DataModel/TimeRange>
+#include <QZeitgeist/DataModel/Event>
 
 class RefreshJob : public ThreadWeaver::Job {
     Q_OBJECT
 
     public:
-        RefreshJob(const QtZeitgeist::DataModel::TimeRange &range,
-                   const QtZeitgeist::DataModel::EventList &templates,
-                   QtZeitgeist::Log::StorageState state,
+        RefreshJob(const QZeitgeist::DataModel::TimeRange &range,
+                   const QZeitgeist::DataModel::EventList &templates,
+                   QZeitgeist::Log::StorageState state,
                    uint maxEvents,
-                   QtZeitgeist::Log::ResultType type,
-                   QtZeitgeist::Log *log,
+                   QZeitgeist::Log::ResultType type,
+                   QZeitgeist::Log *log,
                    QObject *parent = 0);
         ~RefreshJob();
         void run();
-        QtZeitgeist::DataModel::EventList results() const;
+        QZeitgeist::DataModel::EventList results() const;
 
     private:
-        QtZeitgeist::DataModel::TimeRange m_range;
-        QtZeitgeist::DataModel::EventList m_templates;
-        QtZeitgeist::Log::StorageState m_state;
+        QZeitgeist::DataModel::TimeRange m_range;
+        QZeitgeist::DataModel::EventList m_templates;
+        QZeitgeist::Log::StorageState m_state;
         uint m_count;
-        QtZeitgeist::Log::ResultType m_type;
-        QtZeitgeist::Log *m_log;
-        QDBusPendingReply<QtZeitgeist::DataModel::EventList> m_reply;
+        QZeitgeist::Log::ResultType m_type;
+        QZeitgeist::Log *m_log;
+        QDBusPendingReply<QZeitgeist::DataModel::EventList> m_reply;
 };
 
 #endif //REFRESHJOB_H

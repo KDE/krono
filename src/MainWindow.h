@@ -23,7 +23,10 @@
 #include <QtCore/QModelIndex>
 #include <KDE/KXmlGuiWindow>
 
-class ZeitgeistModel;
+namespace QZeitgeist {
+class LogModel;
+}
+
 class CategoryModel;
 
 class QTimer;
@@ -56,7 +59,7 @@ class MainWindow : public KXmlGuiWindow
 
     private:
         void setupActions();
-        ZeitgeistModel *m_model;
+        QZeitgeist::LogModel *m_model;
         QTimer *m_velocityTimer;
         QTimer *m_slideTimer;
         Ui::MainWindow *ui;
