@@ -122,9 +122,26 @@ MainWindow::MainWindow(QWidget *parent)
     c.description = tr("Conversations");
     m_categories->addCategory(c);
 
+    c.uri = QZeitgeist::Interpretation::Subject::NFOVideo;
+    c.icon = KIcon("video-x-generic");
+    c.description = tr("Video");
+    m_categories->addCategory(c);
+
     ui->categoryPicker->setModel(m_categories);
 
+    connect(ui->categoryPicker->selectionModel(), SIGNAL(currentChanged(const QModelIndex, const QModelIndex)), this, SLOT(filterChanged(const QModelIndex)));
+
     goToToday();
+}
+
+void MainWindow::filterChanged(const QModelIndex &idx)
+{
+    QString uri = idx.data(CategoryModel::URIRole).toString();
+    QZeitgeist::DataModel::EventList templates;
+    QZeitgeist::DataModel::Event evt;
+    evt.setInterpretation(uri);
+    templates << evt;
+    m_model->setEventTemplates(templates);
 }
 
 void MainWindow::slideRange()

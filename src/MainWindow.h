@@ -56,6 +56,7 @@ class MainWindow : public KXmlGuiWindow
         void setStart(const QDateTime &);
         void setEnd(const QDateTime &);
         void openPrefs();
+        void filterChanged(const QModelIndex &);
 
     private:
         void setupActions();
