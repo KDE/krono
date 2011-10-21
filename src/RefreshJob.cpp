@@ -21,12 +21,12 @@
 
 #include <QtCore/QDebug>
 
-RefreshJob::RefreshJob(const QtZeitgeist::DataModel::TimeRange &range,
-           const QtZeitgeist::DataModel::EventList &templates,
-           QtZeitgeist::Log::StorageState state,
+RefreshJob::RefreshJob(const QZeitgeist::DataModel::TimeRange &range,
+           const QZeitgeist::DataModel::EventList &templates,
+           QZeitgeist::Log::StorageState state,
            uint maxEvents,
-           QtZeitgeist::Log::ResultType type,
-           QtZeitgeist::Log *log,
+           QZeitgeist::Log::ResultType type,
+           QZeitgeist::Log *log,
            QObject *parent)
     : ThreadWeaver::Job(parent)
     , m_range(range)
@@ -54,7 +54,7 @@ void RefreshJob::run()
     }
 }
 
-QtZeitgeist::DataModel::EventList RefreshJob::results() const
+QZeitgeist::DataModel::EventList RefreshJob::results() const
 {
     return m_reply.value();
 }

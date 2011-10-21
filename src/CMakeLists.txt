@@ -2,11 +2,10 @@ find_package(Qt4 REQUIRED COMPONENTS QtGui QtCore QtDBus)
 find_package(KDE4 REQUIRED)
 include(${QT_USE_FILE})
 include(KDE4Defaults)
-find_package(QZeitgeist REQUIRED)
+find_package(QZeitgeist REQUIRED 0.7.90)
 
 set(krono_SRCS
     main.cpp
-    ZeitgeistModel.cpp
     EventDelegate.cpp
     MainWindow.cpp
     RefreshJob.cpp

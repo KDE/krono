@@ -17,7 +17,6 @@
  *
  */
 
-#include "ZeitgeistModel.h"
 #include "EventDelegate.h"
 #include "MainWindow.h"
 
@@ -26,9 +25,11 @@
 #include <KDE/KAboutData>
 #include <KDE/KLocale>
 #include <KDE/KCmdLineArgs>
+#include <QZeitgeist/qzeitgeist.h>
 
 int main(int argc, char** argv)
 {
+    QZeitgeist::init();
     KAboutData aboutData(
         "Krono",
         0,

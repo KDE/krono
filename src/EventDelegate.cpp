@@ -19,12 +19,15 @@
 
 #include "EventDelegate.h"
 
-#include "ZeitgeistModel.h"
+#include <QZeitgeist/LogModel>
 
 #include <QtGui/QPainter>
 #include <QtGui/QIcon>
 #include <QtCore/QDateTime>
 #include <QtGui/QApplication>
+#include <KDE/KIcon>
+#include <QtCore/QDebug>
+#include <QtCore/QUrl>
 
 EventDelegate::EventDelegate(QObject *parent)
     : QStyledItemDelegate(parent)
@@ -44,9 +47,10 @@ QSize EventDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
 
 void EventDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &idx) const
 {
-    QIcon icon = qVariantValue<QIcon>(idx.data(Qt::DecorationRole));
+    // Basically, pull 'krono' out of app://krono.desktop
+    KIcon icon = KIcon(QUrl(idx.data(QZeitgeist::LogModel::ActorRole).toString()).authority().section(".desktop", 0, 0));
     QString text = idx.data(Qt::DisplayRole).toString();
-    QDateTime time = idx.data(ZeitgeistModel::TimeRole).toDateTime();
+    QDateTime time = idx.data(QZeitgeist::LogModel::TimeRole).toDateTime();
 
     QStyle *style = QApplication::style();
 

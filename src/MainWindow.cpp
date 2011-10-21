@@ -18,7 +18,6 @@
  */
 
 #include "MainWindow.h"
-#include "ZeitgeistModel.h"
 #include "EventDelegate.h"
 #include "CategoryModel.h"
 
@@ -39,7 +38,8 @@
 
 #include <QtCore/QDebug>
 
-#include <QtZeitgeist/Interpretation>
+#include <QZeitgeist/Interpretation>
+#include <QZeitgeist/LogModel>
 
 #include "ui_MainWindow.h"
 
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setAutoSaveSettings();
 
-    m_model = new ZeitgeistModel(this);
+    m_model = new QZeitgeist::LogModel(this);
 
     KCategorizedSortFilterProxyModel *sort = new KCategorizedSortFilterProxyModel(this);
     sort->setCategorizedModel(true);
@@ -98,34 +98,51 @@ MainWindow::MainWindow(QWidget *parent)
     c.description = tr("All");
     m_categories->addCategory(c);
 
-    c.uri = QtZeitgeist::Interpretation::Subject::NFOAudio;
+    c.uri = QZeitgeist::Interpretation::Subject::NFOAudio;
     c.icon = KIcon("audio-x-generic");
     c.description = tr("Audio");
     m_categories->addCategory(c);
 
-    c.uri = QtZeitgeist::Interpretation::Subject::NFODocument;
+    c.uri = QZeitgeist::Interpretation::Subject::NFODocument;
     c.icon = KIcon("applications-office");
     c.description = tr("Documents");
     m_categories->addCategory(c);
 
-    c.uri = QtZeitgeist::Interpretation::Subject::NFOApplication;
+    c.uri = QZeitgeist::Interpretation::Subject::NFOApplication;
     c.icon = KIcon("applications-other");
     c.description = tr("Applications");
     m_categories->addCategory(c);
 
-    c.uri = QtZeitgeist::Interpretation::Subject::NFOWebsite;
+    c.uri = QZeitgeist::Interpretation::Subject::NFOWebsite;
     c.icon = KIcon("applications-internet");
     c.description = tr("Websites");
     m_categories->addCategory(c);
 
-    c.uri = QtZeitgeist::Interpretation::Subject::NMOMessage;
+    c.uri = QZeitgeist::Interpretation::Subject::NMOMessage;
     c.icon = KIcon("view-pim-contacts");
     c.description = tr("Conversations");
     m_categories->addCategory(c);
 
+    c.uri = QZeitgeist::Interpretation::Subject::NFOVideo;
+    c.icon = KIcon("video-x-generic");
+    c.description = tr("Video");
+    m_categories->addCategory(c);
+
     ui->categoryPicker->setModel(m_categories);
 
+    connect(ui->categoryPicker->selectionModel(), SIGNAL(currentChanged(const QModelIndex, const QModelIndex)), this, SLOT(filterChanged(const QModelIndex)));
+
     goToToday();
+}
+
+void MainWindow::filterChanged(const QModelIndex &idx)
+{
+    QString uri = idx.data(CategoryModel::URIRole).toString();
+    QZeitgeist::DataModel::EventList templates;
+    QZeitgeist::DataModel::Event evt;
+    evt.setInterpretation(uri);
+    templates << evt;
+    m_model->setEventTemplates(templates);
 }
 
 void MainWindow::slideRange()
@@ -141,7 +158,7 @@ void MainWindow::addTimeVelocity(int scale)
 
 void MainWindow::slideRange(int msec)
 {
-    QtZeitgeist::DataModel::TimeRange range = m_model->range();
+    QZeitgeist::DataModel::TimeRange range = m_model->range();
     range.setBegin(range.begin()+msec);
     range.setEnd(range.end()+msec);
     m_model->setRange(range);
@@ -153,13 +170,13 @@ void MainWindow::slideRange(int msec)
 
 void MainWindow::eventActivated(const QModelIndex &idx)
 {
-    new KRun(KUrl(idx.data(ZeitgeistModel::URLRole).toUrl()), this);
+    new KRun(KUrl(idx.data(QZeitgeist::LogModel::URLRole).toUrl()), this);
 }
 
 void MainWindow::setStart(const QDateTime &time)
 {
     m_slideTimer->stop();
-    QtZeitgeist::DataModel::TimeRange range = m_model->range();
+    QZeitgeist::DataModel::TimeRange range = m_model->range();
     range.setBegin(time.toMSecsSinceEpoch());
     m_model->setRange(range);
 }
@@ -167,7 +184,7 @@ void MainWindow::setStart(const QDateTime &time)
 void MainWindow::setEnd(const QDateTime &time)
 {
     m_slideTimer->stop();
-    QtZeitgeist::DataModel::TimeRange range = m_model->range();
+    QZeitgeist::DataModel::TimeRange range = m_model->range();
     range.setEnd(time.toMSecsSinceEpoch());
     m_model->setRange(range);
 }
@@ -176,7 +193,7 @@ void MainWindow::goToToday()
 {
     QDateTime end(QDateTime::currentDateTime());
     QDateTime start = end.addDays(-7);
-    QtZeitgeist::DataModel::TimeRange range(start.toMSecsSinceEpoch(), end.toMSecsSinceEpoch());
+    QZeitgeist::DataModel::TimeRange range(start.toMSecsSinceEpoch(), end.toMSecsSinceEpoch());
     m_model->setRange(range);
     m_slideTimer->start();
 }
