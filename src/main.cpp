@@ -29,7 +29,6 @@
 
 int main(int argc, char** argv)
 {
-    QZeitgeist::init();
     KAboutData aboutData(
         "Krono",
         0,
