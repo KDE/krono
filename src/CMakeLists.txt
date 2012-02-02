@@ -8,7 +8,6 @@ set(krono_SRCS
     main.cpp
     EventDelegate.cpp
     MainWindow.cpp
-    RefreshJob.cpp
     LinearBrowser.cpp
     CategoryModel.cpp
     LinearTileDelegate.cpp
