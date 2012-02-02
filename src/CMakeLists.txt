@@ -32,4 +32,4 @@ target_link_libraries(krono ${QT_LIBRARIES} ${QZEITGEIST_LIBRARY} ${KDE4_KDECORE
 
 install(TARGETS krono ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS krono.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
-install(FILES krono_ui.rc DESTINATION ${DATA_INSTALL_DIR}/krono)
+install(FILES kronoui.rc DESTINATION ${DATA_INSTALL_DIR}/krono)

@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setupGUI(Default, "krono_ui");
+    setupGUI();
     setupActions();
 
     setAutoSaveSettings();

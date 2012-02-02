@@ -30,7 +30,7 @@
 int main(int argc, char** argv)
 {
     KAboutData aboutData(
-        "Krono",
+        "krono",
         0,
         ki18n("Krono"),
         "0.0.1",
