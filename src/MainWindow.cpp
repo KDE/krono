@@ -62,12 +62,6 @@ MainWindow::MainWindow(QWidget *parent)
     sort->setSourceModel(m_model);
     ui->searchBox->setProxy(sort);
 
-    m_drawer = new KCategoryDrawerV3(ui->historyView);
-    ui->historyView->setCategoryDrawer(m_drawer);
-    ui->historyView->setSpacing(KDialog::spacingHint());
-    ui->historyView->setItemDelegate(new EventDelegate(this));
-    ui->historyView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
     ui->historyView->setModel(sort);
 
     m_velocityTimer = new QTimer(this);

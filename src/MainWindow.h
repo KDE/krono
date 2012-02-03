@@ -64,7 +64,6 @@ class MainWindow : public KXmlGuiWindow
         QTimer *m_velocityTimer;
         QTimer *m_slideTimer;
         Ui::MainWindow *ui;
-        KCategoryDrawer *m_drawer;
         CategoryModel *m_categories;
         KHelpMenu *m_helpMenu;
         KMenu *m_mainMenu;

@@ -10,6 +10,7 @@ set(krono_SRCS
     MainWindow.cpp
     LinearBrowser.cpp
     CategoryModel.cpp
+    HistoryView.cpp
     LinearTileDelegate.cpp
     )
 

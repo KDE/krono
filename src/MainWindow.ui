@@ -102,7 +102,7 @@
      </layout>
     </item>
     <item>
-     <widget class="KCategorizedView" name="historyView">
+     <widget class="HistoryView" name="historyView">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -160,9 +160,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KCategorizedView</class>
+   <class>HistoryView</class>
    <extends>QListView</extends>
-   <header>kcategorizedview.h</header>
+   <header>HistoryView.h</header>
   </customwidget>
   <customwidget>
    <class>KFilterProxySearchLine</class>
