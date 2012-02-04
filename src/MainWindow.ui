@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="KFilterProxySearchLine" name="searchBox"/>
+       <widget class="KFilterProxySearchLine" name="searchBox" native="true"/>
       </item>
       <item>
        <widget class="QToolButton" name="optionsButton">
@@ -55,51 +55,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QDateTimeEdit" name="startTime">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSlider" name="timeSlider">
-        <property name="minimum">
-         <number>-100</number>
-        </property>
-        <property name="maximum">
-         <number>100</number>
-        </property>
-        <property name="pageStep">
-         <number>0</number>
-        </property>
-        <property name="value">
-         <number>0</number>
-        </property>
-        <property name="sliderPosition">
-         <number>0</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDateTimeEdit" name="endTime">
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="todayButton">
-        <property name="text">
-         <string>Go To Today</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="TimelineSlider" name="timeSlider" native="true"/>
     </item>
     <item>
      <widget class="HistoryView" name="historyView">
@@ -121,7 +77,7 @@
       <property name="uniformItemSizes">
        <bool>true</bool>
       </property>
-      <property name="collapsibleBlocks">
+      <property name="collapsibleBlocks" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -152,7 +108,7 @@
      <x>0</x>
      <y>0</y>
      <width>656</width>
-     <height>24</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>
@@ -173,6 +129,12 @@
    <class>LinearBrowser</class>
    <extends>QListView</extends>
    <header>LinearBrowser.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TimelineSlider</class>
+   <extends>QWidget</extends>
+   <header>TimelineSlider.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

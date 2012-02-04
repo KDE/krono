@@ -25,6 +25,9 @@
 
 namespace QZeitgeist {
 class LogModel;
+namespace DataModel {
+class TimeRange;
+}
 }
 
 class CategoryModel;
@@ -45,24 +48,13 @@ class MainWindow : public KXmlGuiWindow
         MainWindow(QWidget *parent = 0);
 
     private slots:
-        void addTimeVelocity(int scale);
-        void startVelocity();
-        void stopVelocity();
-        void applyVelocity();
-        void slideRange();
-        void slideRange(int msec);
-        void goToToday();
         void eventActivated(const QModelIndex &);
-        void setStart(const QDateTime &);
-        void setEnd(const QDateTime &);
         void openPrefs();
         void filterChanged(const QModelIndex &);
 
     private:
         void setupActions();
         QZeitgeist::LogModel *m_model;
-        QTimer *m_velocityTimer;
-        QTimer *m_slideTimer;
         Ui::MainWindow *ui;
         CategoryModel *m_categories;
         KHelpMenu *m_helpMenu;
