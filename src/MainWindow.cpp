@@ -110,11 +110,11 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::filterChanged(const QModelIndex &idx)
 {
     QString uri = idx.data(CategoryModel::URIRole).toString();
-    QZeitgeist::DataModel::EventList templates;
     QZeitgeist::DataModel::Event evt;
-    evt.setInterpretation(uri);
-    templates << evt;
-    m_model->setEventTemplates(templates);
+    QZeitgeist::DataModel::Subject s;
+    s.setInterpretation(uri);
+    evt.setSubjects(QZeitgeist::DataModel::SubjectList() << s);
+    m_model->setEventTemplates(QZeitgeist::DataModel::EventList() << evt);
 }
 
 void MainWindow::eventActivated(const QModelIndex &idx)
