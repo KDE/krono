@@ -2,7 +2,7 @@ find_package(Qt4 REQUIRED COMPONENTS QtGui QtCore QtDBus)
 find_package(KDE4 REQUIRED)
 include(${QT_USE_FILE})
 include(KDE4Defaults)
-find_package(QZeitgeist REQUIRED 0.7.90)
+find_package(QZeitgeist REQUIRED 0.8.0)
 
 set(krono_SRCS
     main.cpp
