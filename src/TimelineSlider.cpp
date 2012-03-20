@@ -76,12 +76,14 @@ void TimelineSlider::setStart(const QDateTime &time)
 {
     m_slideTimer->stop();
     m_range.setBegin(time.toMSecsSinceEpoch());
+    emit rangeChanged(m_range);
 }
 
 void TimelineSlider::setEnd(const QDateTime &time)
 {
     m_slideTimer->stop();
     m_range.setEnd(time.toMSecsSinceEpoch());
+    emit rangeChanged(m_range);
 }
 
 void TimelineSlider::goToToday()
