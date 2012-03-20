@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Trever Fischer <tdfischer@fedoraproject.org>
+ * Copyright (C) 2012 Trever Fischer <tdfischer@fedoraproject.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,26 +17,24 @@
  *
  */
 
-#include "MainWindow.h"
-#include "KronoApp.h"
+#ifndef KRONOAPP_H
+#define KRONOAPP_H
 
-#include <KDE/KAboutData>
-#include <KDE/KLocale>
-#include <KDE/KCmdLineArgs>
+#include <KDE/KUniqueApplication>
 
-int main(int argc, char** argv)
-{
-    KAboutData aboutData(
-        "krono",
-        0,
-        ki18n("Krono"),
-        "0.0.1",
-        ki18n("Displays your history"),
-        KAboutData::License_GPL,
-        ki18n("(c) 2011"));
-    aboutData.addAuthor(ki18n("Trever Fischer"), ki18n("Developer") ,"tdfischer@fedoraproject.org", "http://wm161.net/");
-    KUniqueApplication::addCmdLineOptions();
-    KCmdLineArgs::init(argc, argv, &aboutData);
-    KronoApp app;
-    return app.exec();
-}
+class KStatusNotifierItem;
+class MainWindow;
+
+class KronoApp : public KUniqueApplication {
+    Q_OBJECT
+public:
+    int newInstance();
+
+private slots:
+    void activateWindow(bool active, const QPoint &pos);
+private:
+    KStatusNotifierItem *m_statusIcon;
+    MainWindow *m_window;
+};
+
+#endif // KRONOAPP_H

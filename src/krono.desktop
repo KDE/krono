@@ -6,3 +6,4 @@ Type=Application
 Categories=Qt;KDE;System
 GenericName=History Journal
 Terminal=false
+X-DBUS-StartupType=Unique

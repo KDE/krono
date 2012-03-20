@@ -13,6 +13,7 @@ set(krono_SRCS
     HistoryView.cpp
     LinearTileDelegate.cpp
     TimelineSlider.cpp
+    KronoApp.cpp
     )
 
 kde4_add_ui_files(krono_SRCS
