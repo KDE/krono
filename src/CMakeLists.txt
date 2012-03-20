@@ -10,6 +10,7 @@ set(krono_SRCS
     MainWindow.cpp
     LinearBrowser.cpp
     CategoryModel.cpp
+    CategorizedLogModel.cpp
     HistoryView.cpp
     LinearTileDelegate.cpp
     TimelineSlider.cpp

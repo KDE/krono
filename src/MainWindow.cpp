@@ -20,6 +20,7 @@
 #include "MainWindow.h"
 #include "EventDelegate.h"
 #include "CategoryModel.h"
+#include "CategorizedLogModel.h"
 
 #include <KDE/KCategorizedSortFilterProxyModel>
 #include <KDE/KRun>
@@ -48,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setAutoSaveSettings();
 
-    m_model = new QZeitgeist::LogModel(this);
+    m_model = new CategorizedLogModel(this);
 
     KCategorizedSortFilterProxyModel *sort = new KCategorizedSortFilterProxyModel(this);
     sort->setCategorizedModel(true);
