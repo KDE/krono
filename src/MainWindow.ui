@@ -43,14 +43,11 @@
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>100</height>
+        <height>50</height>
        </size>
       </property>
       <property name="viewMode">
        <enum>QListView::IconMode</enum>
-      </property>
-      <property name="uniformItemSizes">
-       <bool>true</bool>
       </property>
      </widget>
     </item>

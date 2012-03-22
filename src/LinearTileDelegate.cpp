@@ -35,22 +35,30 @@ void LinearTileDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     QStyle *style = QApplication::style();
 
-    QFontMetrics fm(option.font);
-    QRect iconRect = option.rect.adjusted(0, 0, 0, -fm.height());
+    QStyleOptionButton buttonStyle;
+    buttonStyle.initFrom(m_view);
+    buttonStyle.rect = option.rect;
+    buttonStyle.state = option.state;
+    buttonStyle.text = text;
+    buttonStyle.icon = icon;
+    buttonStyle.iconSize = QSize(16, 16);
 
-    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
+    if (option.state & QStyle::State_Selected)
+      buttonStyle.state |= QStyle::State_Sunken;
 
-    icon.paint(painter, iconRect, Qt::AlignCenter, QIcon::Active);
-
-    painter->drawText(option.rect, Qt::AlignCenter | Qt::AlignBottom, text);
+    style->drawControl(QStyle::CE_PushButton, &buttonStyle, painter);
 }
 
 QSize LinearTileDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    Q_UNUSED(option);
-    Q_UNUSED(index);
-    int size = qMin(m_view->height(), m_view->width())-m_view->spacing()*2;
-    return QSize(size, size);
+    QFontMetrics fm(option.font);
+    QIcon icon = qVariantValue<QIcon>(index.data(Qt::DecorationRole));
+    QString text = index.data(Qt::DisplayRole).toString();
+    int width = fm.width(text)+m_view->spacing()*4;
+    int height = m_view->height()-m_view->spacing()*2;
+
+    width += height/2;
+    return QSize(width, height);
 }
 
 #include "LinearTileDelegate.moc"

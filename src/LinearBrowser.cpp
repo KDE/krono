@@ -32,6 +32,7 @@ LinearBrowser::LinearBrowser(QWidget *parent)
     setSpacing(KDialog::spacingHint());
     setItemDelegate(new LinearTileDelegate(this));
     setFrameShape(QFrame::NoFrame);
+    viewport()->setBackgroundRole(QPalette::Window);
 }
 
 #include "LinearBrowser.moc"
