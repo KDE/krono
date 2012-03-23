@@ -42,7 +42,7 @@ QSize EventDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
 {
     Q_UNUSED(option);
     Q_UNUSED(idx);
-    return QSize(175, 50);
+    return QSize(350, 100);
 }
 
 void EventDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &idx) const
@@ -78,7 +78,7 @@ void EventDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     painter->setOpacity(1);
     QFont font;
     font.setBold(true);
-    font.setPixelSize(10);
+    font.setPixelSize(15);
     painter->setFont(font);
 
     painter->drawText(baseRect, Qt::AlignLeft | Qt::TextWordWrap, text);
