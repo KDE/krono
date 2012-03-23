@@ -25,6 +25,8 @@
 #include <QtGui/QIcon>
 #include <QtCore/QDateTime>
 #include <QtGui/QApplication>
+#include <QtCore/QDir>
+#include <QtCore/QCryptographicHash>
 #include <KDE/KIcon>
 #include <QtCore/QDebug>
 #include <QtCore/QUrl>
@@ -47,8 +49,7 @@ QSize EventDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
 
 void EventDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &idx) const
 {
-    // Basically, pull 'krono' out of app://krono.desktop
-    KIcon icon = KIcon(QUrl(idx.data(QZeitgeist::LogModel::ActorRole).toString()).authority().section(".desktop", 0, 0));
+    QPixmap icon;
     QString text = idx.data(Qt::DisplayRole).toString();
     QDateTime time = idx.data(QZeitgeist::LogModel::TimeRole).toDateTime();
 
@@ -72,8 +73,32 @@ void EventDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 
     painter->save();
     painter->setOpacity(0.4);
+
+    QString url(idx.data(QZeitgeist::LogModel::URLRole).toString());
+    QPixmap overlay;
+    if (!m_iconCache.contains(url)) {
+      icon = idx.data(QZeitgeist::LogModel::ThumbnailRole).value<QPixmap>();
+      if (icon.isNull()) {
+          KIcon kicon = KIcon(QUrl(idx.data(QZeitgeist::LogModel::ActorRole).toString()).authority().section(".desktop", 0, 0));
+          icon = kicon.pixmap(iconRect.size());
+      } else {
+          icon = icon.scaled(iconRect.size(), Qt::KeepAspectRatio);
+          KIcon kicon = KIcon(QUrl(idx.data(QZeitgeist::LogModel::ActorRole).toString()).authority().section(".desktop", 0, 0));
+          QPainter overlayPainter(&icon);
+          QRect overlayRect(QPoint(0, 0), iconRect.size());
+          int iconSize = qMin(overlayRect.width(), overlayRect.height());
+          overlayRect.setX(iconSize/2);
+          overlayRect.setY(iconSize/2);
+          kicon.paint(&overlayPainter, overlayRect, Qt::AlignCenter, QIcon::Active);
+      }
+      m_iconCache[url] = icon;
+    } else {
+      icon = m_iconCache[url];
+    }
+
+    painter->drawPixmap(iconRect, icon);
     
-    icon.paint(painter, iconRect, Qt::AlignCenter, mode);
+    //icon.paint(painter, iconRect, Qt::AlignCenter, mode);
 
     painter->setOpacity(1);
     QFont font;

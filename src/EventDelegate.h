@@ -31,6 +31,9 @@ class EventDelegate : public QStyledItemDelegate
         ~EventDelegate();
         QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
         void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &idx) const;
+
+    private:
+        QHash<QString, QPixmap> mutable m_iconCache;
 };
 
 #endif //EVENTDELEGATE_H
