@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Krono
 Name[cs]= 
+Name[fr]=Krono
 Name[nl]=Krono
 Name[pt]=Krono
 Name[pt_BR]=Krono
@@ -13,6 +14,7 @@ Icon=chronometer
 Type=Application
 Categories=Qt;KDE;System
 GenericName=History Journal
+GenericName[fr]=Journal d'historique
 GenericName[nl]=Journaal van geschiedenis
 GenericName[pt]=Diário do Histórico
 GenericName[pt_BR]=Diário do histórico
