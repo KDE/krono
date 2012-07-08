@@ -2,6 +2,7 @@
 Name=Krono
 Name[cs]= 
 Name[de]=Krono
+Name[es]=Krono
 Name[et]=Krono
 Name[fr]=Krono
 Name[ga]=Krono
@@ -20,6 +21,7 @@ Icon=chronometer
 Type=Application
 Categories=Qt;KDE;System
 GenericName=History Journal
+GenericName[es]=Diario del historial
 GenericName[et]=Ajaloopäevik
 GenericName[fr]=Journal d'historique
 GenericName[hu]=Előzménynapló
