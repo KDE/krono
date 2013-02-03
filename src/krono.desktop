@@ -25,6 +25,7 @@ Type=Application
 Categories=Qt;KDE;System;
 GenericName=History Journal
 GenericName[bs]=Historijski žurnal
+GenericName[de]=Verlaufsjournal
 GenericName[es]=Diario del historial
 GenericName[et]=Ajaloopäevik
 GenericName[fr]=Journal d'historique
