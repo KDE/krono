@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2011 Trever Fischer <tdfischer@fedoraproject.org>
+ * Copyright (C) 2011 Torrie Fischer <tdfischer@kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
         ki18n("Displays your history"),
         KAboutData::License_GPL,
         ki18n("(c) 2011"));
-    aboutData.addAuthor(ki18n("Trever Fischer"), ki18n("Developer") ,"tdfischer@fedoraproject.org", "http://wm161.net/");
+    aboutData.addAuthor(ki18n("Torrie Fischer"), ki18n("Developer") ,"tdfischer@kde.org", "http://hackerbots.net/");
     KUniqueApplication::addCmdLineOptions();
     KCmdLineArgs::init(argc, argv, &aboutData);
     KronoApp app;
